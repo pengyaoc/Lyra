@@ -23,16 +23,22 @@ into the {body} of the default.hbs template --}}
 {{!-- The main content area --}}
 <main id="site-main" class="site-main outer">
     <div class="inner posts">
-
         <div class="post-feed">
-            {{#foreach posts visibility="all"}}
 
+            {{#foreach posts visibility="all"}}
+                {{#if featured}}
                 {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
                 {{> "post-card"}}
-
+                {{/if}}
             {{/foreach}}
-        </div>
 
+            {{#foreach posts}}
+                {{^if featured}}
+                {{> "post-card"}}
+                {{/if}}
+            {{/foreach}}
+
+        </div>
     </div>
 </main>
 
