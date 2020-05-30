@@ -7,6 +7,7 @@
     {{> header-background background=feature_image}} {{!--Special header-image.hbs partial to generate the background image--}}
         <div class="inner site-header-content">
             <h1 class="site-title">{{name}}</h1>
+            <div />
             <h2 class="site-description">
                 {{#if description}}
                     {{description}}
@@ -24,8 +25,16 @@
     <div class="inner posts">
         <div class="post-feed">
             {{#foreach posts visibility="all"}}
+                {{#if featured}}
                 {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
                 {{> "post-card"}}
+                {{/if}}
+            {{/foreach}}
+
+            {{#foreach posts visibility="all"}}
+                {{^if featured}}
+                {{> "post-card"}}
+                {{/if}}
             {{/foreach}}
         </div>
     </div>
